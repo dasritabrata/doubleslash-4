@@ -2,7 +2,7 @@
 
 import { PowerProvider, usePower } from "$/contexts/powerContext";
 import { useSound } from "../hooks/useSound";
-import { useState, useEffect } from "react";
+import DevfolioButton from "$/components/devfolio";
 
 function LayoutContent({ children }: { children: React.ReactNode }) {
 	const { playSound } = useSound("/sounds/button-press.mp3");
@@ -33,6 +33,7 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
                 ${togglePower && "scale-120 lg:scale-160 xl:scale-180"}
             `}
 		>
+			<DevfolioButton />
 			<div className="" />
 			{/* <img
 				src="/imgs/point-to-power.png"
