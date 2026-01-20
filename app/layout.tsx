@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, VT323 } from "next/font/google";
+
+import { PowerProvider } from "$/contexts/powerContext";
+import { LayoutContent } from "$/components/base-layout";
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -53,7 +57,9 @@ export default function RootLayout({
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} ${vt323.variable} antialiased bg-[url(/imgs/background-wide.jpeg)] h-screen backdrop-blur-3xl`}
 			>
-				{children}
+				<PowerProvider>
+					<LayoutContent>{children}</LayoutContent>
+				</PowerProvider>
 			</body>
 		</html>
 	);

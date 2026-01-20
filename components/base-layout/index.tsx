@@ -1,11 +1,12 @@
 "use client";
 
-import { PowerProvider, usePower } from "$/contexts/powerContext";
-import { useSound } from "../../hooks/useSound";
+import { usePower } from "$/contexts/powerContext";
+import { useSound } from "$/hooks/useSound";
+
 import DevfolioButton from "$/components/devfolio";
 import Image from "next/image";
 
-function LayoutContent({ children }: { children: React.ReactNode }) {
+export function LayoutContent({ children }: { children: React.ReactNode }) {
 	const { playSound } = useSound("/sounds/button-press.mp3");
 	const { togglePower, setTogglePower } = usePower();
 
@@ -21,32 +22,24 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
 			<DevfolioButton />
 			<div className="" />
 			{/* <img
-				src="/imgs/point-to-power.png"
-				alt="Power button pointer"
-				className={`absolute left-[calc(50%-250px)] bottom-[calc(50%-340px)] w-80 animate-pointer-cycle origin-[50%_50%] opacity-0 transition-opacity duration-700 ${!togglePower && "opacity-100"}`}
-				/> */}
-			
+        src="/imgs/point-to-power.png"
+        alt="Power button pointer"
+        className={`absolute left-[calc(50%-250px)] bottom-[calc(50%-340px)] w-80 animate-pointer-cycle origin-[50%_50%] opacity-0 transition-opacity duration-700 ${!togglePower && "opacity-100"}`}
+        /> */}
+
 			<button
 				type="button"
-				className={`absolute left-[calc(50%-180px)] md:left-[calc(50%-210px)] bottom-[calc(50%-170px)] w-12 h-12 border border-red-500 after:absolute after:-top-1 after:-right-1 after:w-12 after:h-12 after:border after:border-red-400 transition-opacity duration-700 ${togglePower && "opacity-35"}`}
+				className={`absolute left-[calc(50%-180px)] md:left-[calc(50%-210px)] bottom-[calc(50%-170px)] z-10 w-12 h-12 border border-red-500 after:absolute after:-top-1 after:-right-1 after:w-12 after:h-12 after:border after:border-red-400 transition-opacity duration-700 ${togglePower && "opacity-35"}`}
 				onClick={turnOn}
 			></button>
 			<Image src="/imgs/Devfolio_Logo-Colored.svg" height={100} width={100} alt="DEVFOLIO LOGO" />
 			<div className="absolute bottom-[calc(50%+36px)] right-[calc(50%+6px)] translate-x-1/2 translate-y-1/2 clip-monitor h-[268px] w-[392px] bg-[#121010fa] animate-[crtFlicker_0.15s_infinite]">
 				<div
-					className={`relative w-full h-full clip-monitor overflow-hidden after:absolute after:top-0 after:left-0 after:bg-[#121010fa] after:opacity-0 after:z-2 before:absolute before:top-0 before:left-0 before:z-2 before:bg-size-[100%_2px,3px_100%] before:bg-(--flicker-gradient) scanlines `}
+					className={`relative w-full h-full clip-monitor overflow-hidden after:absolute after:top-0 after:left-0 after:bg-[#121010fa] after:opacity-0 after:z-2 before:absolute before:top-0 before:left-0 before:z-2 before:bg-size-[100%_2px,3px_100%] before:bg-(--flicker-gradient) scanlines z-10`}
 				>
 					{children}
 				</div>
 			</div>
 		</div>
-	);
-}
-
-export default function HomeLayout({ children }: { children: React.ReactNode }) {
-	return (
-		<PowerProvider>
-			<LayoutContent>{children}</LayoutContent>
-		</PowerProvider>
 	);
 }
