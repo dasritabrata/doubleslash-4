@@ -4,7 +4,6 @@ import { usePower } from "$/contexts/powerContext";
 import { useSound } from "$/hooks/useSound";
 
 import DevfolioButton from "$/components/devfolio";
-import Image from "next/image";
 
 export function LayoutContent({ children }: { children: React.ReactNode }) {
 	const { playSound } = useSound("/sounds/button-press.mp3");
